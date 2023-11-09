@@ -29,10 +29,12 @@ body {
   padding: 1em;
 }
 
-a {
+a, summary {
   text-decoration: none;
+  cursor: pointer;
+  color: blue;
 }
-a:hover {
+a:hover, summary:hover {
   text-decoration: underline;
 }
 
