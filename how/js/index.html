@@ -11,18 +11,22 @@
 <body>
 <nav><a href="/">noframework</a>'s <a href="..">how</a></nav>
 <h1>How build software using just vanilla JS</h1>
-<section>
-  <h2>Modules in browser</h2>
+<details>
+  <summary>Modules in browser</summary>
   <p>The goal here is to <code>export</code>/<code>import</code> modern ES modules.</p>
   <ul>
     <li>Add <code>type="module"</code> in your script tag.</li>
     <li>When using <code>import</code> specify the <code>.js</code> file extension so that the browser can find the file.</li>
   </ul>
-</section>
-<section>
-  <h2>Typing</h2>
+</details>
+<details>
+  <summary>Typing</summary>
+  <p>JavaScript built-in types can be checked using the <code>typeof</code> operator: <code>boolean</code>,
+    <code>number</code> or <code>bigint</code>, <code>string</code>, <code>symbol</code> or <code>object</code>.</p>
+  <p>So typeof applied to any of your custom <code>class</code>es will return <code>object</code>. To get the actual
+  class name, check <code>yourInstance.constructor.name</code>.</p>
   <p>Your IDE can check your types by checking your <a href="https://jsdoc.app/">JSDoc</a> comments.</p>
-</section>
+</details>
 <section>
   <h2>Examples</h2>
   <ul>
