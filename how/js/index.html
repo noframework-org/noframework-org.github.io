@@ -16,20 +16,26 @@
   <p>The goal here is to <code>export</code>/<code>import</code> modern ES modules.</p>
   <ul>
     <li>Add <code>type="module"</code> in your script tag.</li>
-    <li>When using <code>import</code> specify the <code>.js</code> file extension so that the browser can find the file.</li>
+    <li>When using <code>import</code> specify the <code>.js</code> file extension so that the browser can find the
+      file.</li>
   </ul>
 </details>
 <details>
   <summary>Typing</summary>
   <p>JavaScript built-in types can be checked using the <code>typeof</code> operator: <code>boolean</code>,
     <code>number</code> or <code>bigint</code>, <code>string</code>, <code>symbol</code> or <code>object</code>.</p>
-  <p>So typeof applied to any of your custom <code>class</code>es will return <code>object</code>. To get the actual
-  class name, check <code>yourInstance.constructor.name</code>.</p>
+  <p>So <code>typeof</code> applied to any of your custom <code>class</code>es will return <code>object</code>. To get
+    the actual class name, check <code>yourInstance.constructor.name</code>.</p>
   <p>Your IDE can check your types by checking your <a href="https://jsdoc.app/">JSDoc</a> comments.</p>
+  <p>If you provide an API, you can even <a
+    href="https://www.typescriptlang.org/docs/handbook/declaration-files/dts-from-js.html">generate <code>.dt.ts</code>
+    files from JavaScript files using JSDoc</a>.</p>
 </details>
 <details>
   <summary>Have a page containing some template or another</summary>
-  <p>Define as many <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a>s as your need and replace the DOM node by their cloned content.</p>
+  <p>Define as many <a
+    href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a>s as your
+    need and replace the DOM node by their cloned content.</p>
 </details>
 <section>
   <h2>Examples</h2>
