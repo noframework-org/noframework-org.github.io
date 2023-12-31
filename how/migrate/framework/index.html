@@ -1,16 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>How to migrate code from a framework - noframework</title>
-  <meta content="Jérôme Beau" name="author">
-  <meta name="description" content="How to build software without a framework">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <link href="/index.css" rel="stylesheet"/>
-</head>
-<body>
-<nav><a href="/">noframework</a>'s <a href="../..">how to</a> <a href="..">migrate your code</a></nav>
-<h1>How to migrate code from a framework</h1>
+<!--#include virtual="/header-start.html" -->
+<title>How to migrate code from a framework</title>
+<!--#include virtual="/header-end.html" -->
 <p>Here is a list of standard APIs that can be used as a replacement of some framework feature:</p>
 <ul>
   <li><b>Sanitization</b>: Since <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setHTML"><code>
@@ -19,5 +9,4 @@
     are not available on all platforms, use the <a href="https://github.com/mozilla/sanitizer-polyfill">relevant
       polyfill</a>.</li>
 </ul>
-</body>
-</html>
+<!--#include virtual="/footer.html" -->

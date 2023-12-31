@@ -1,10 +1,9 @@
 import path from 'path'
 import { ContentStep, CopyStep, DefaultLogger, Ssg, SsgContextImpl, SsgFile, SsiIncludeReplaceCommand } from 'ssg-api'
+import { SsiTitleReplaceCommand } from './SsiTitleReplaceCommand.js'
+import { TitleReplaceCommand } from './TitleReplaceCommand.js'
 
 const context = new SsgContextImpl('en', new Map(), 'noframework', new DefaultLogger('noframework'))
-/**
- * @type {SsgConfig}
- */
 const config = {
   outDir: 'out'
 }
@@ -16,15 +15,11 @@ const contentRoots = [
   'how/**/*.html',
   'read/**/*.html'
 ]
-/**
- * @type {ReplaceCommand[]}
- */
 const contentReplacements = [
-  new SsiIncludeReplaceCommand()
+  new SsiIncludeReplaceCommand(),
+  new SsiTitleReplaceCommand(),
+  new TitleReplaceCommand('noframework')
 ]
-/**
- * @type {ContentStepConfig[]}
- */
 const contentConfigs = [
   {
     roots: contentRoots,
@@ -38,17 +33,7 @@ const contentConfigs = [
     }
   }
 ]
-/**
- * @type {OutputFunc}
- */
-const outputFunc
-  /**
-   * @param {SsgContext} context
-   * @param {SsgFile} info
-   * @param {string} outDir
-   * @return {Promise<void>}
-   */
-  = async (context, info, outDir = config.outDir + '/') => {
+const outputFunc = async (context, info, outDir = config.outDir + '/') => {
   // TODO: Fix this
   if (info.name.startsWith(outDir)) {
     if (info.name.startsWith(path.join(outDir, outDir))) {
@@ -77,7 +62,7 @@ class NoFrameworkContentStep extends ContentStep {
 
 new Ssg(config)
   .add(new NoFrameworkContentStep(contentConfigs, outputFunc))
-  .add(new CopyStep(['logo.png', 'index.css'], config, {ignore: ['node_modules/**', 'out/**']}))
+  .add(new CopyStep(['logo.png', 'index.css', 'index.js'], config, { ignore: ['node_modules/**', 'out/**'] }))
   .start(context)
   .then(result => context.log('Completed', result))
   .catch(err => {
