@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Solutions for building software without a framework",
   "main": "index.html",
-  "author": "javarome@gmail.com",
+  "author": "Jérôme Beau",
   "license": "MIT",
   "homepage": "https://github.com/noframework-org/noframework-org.github.io",
   "repository": {
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "rebuild": "rm -Rf out && npm run build",
-    "build": "node build.js",
+    "build": "node _build/build.js",
     "test": "node --test"
   },
   "devDependencies": {
