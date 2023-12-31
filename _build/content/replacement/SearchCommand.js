@@ -41,11 +41,6 @@ export class SearchCommandOptions {
    * @type {string[]}
    */
   notIndexedUrls
-  /**
-   *
-   * @type {string}
-   */
-  indexContent
 }
 
 /**
@@ -60,30 +55,12 @@ export class SearchCommand {
     pages: [],
     words: {}
   };
-  /**
-   * @readonly
-   * @protected
-   * @type {fs.WriteStream | undefined}
-   */
-  contentStream
 
   /**
    * @param {SearchCommandOptions} options
    */
   constructor(options) {
     this.options = options
-    const indexContent = this.options.indexContent;
-    if (indexContent) {
-      this.contentStream = fs.createWriteStream(indexContent);
-    }
-  }
-
-  async contentStepEnd() {
-    const contentStream = this.contentStream;
-    if (contentStream) {
-      contentStream.write('\n]');
-      contentStream.end();
-    }
   }
 
   /**
@@ -100,9 +77,6 @@ export class SearchCommand {
         context.warn(`Title "${title}" with URL ${url} is already indexed with URL ${titleIndexed.url}`);
       }
       indexedPages.push({title, url});
-    }
-    if (this.options.indexContent) {
-      this.indexContent(context, outputFile);
     }
     return outputFile;
   }
@@ -121,19 +95,7 @@ export class SearchCommand {
     return div.textContent;
   }
 
-  /**
-   * @protected
-   */
-  indexContent(context, outputFile) {
-    const contents = this.getContents(outputFile.document);
-    const contentsRecord = {
-      title: outputFile.title,
-      url: context.outputFile.name,
-      html: contents
-    };
-    const prefix = this.contentStream.bytesWritten === 0 ? '[\n' : ',\n';
-    let str = prefix + JSON.stringify(contentsRecord);
-    this.contentStream.write(str);
+  async contentStepEnd() {
   }
 
   /**

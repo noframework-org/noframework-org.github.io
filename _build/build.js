@@ -34,8 +34,7 @@ const outputFunc = async (context, info, outDir = config.outDir + '/') => {
   }
 }
 const searchCommand = new SearchCommand({
-  notIndexedUrls: [],
-  indexContent: 'out/contentsIndex.json'
+  notIndexedUrls: []
 })
 new Ssg(config)
   .add(new PackageJsonStep('package.json'))
