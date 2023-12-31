@@ -2,8 +2,9 @@ import { ContentStep, SsiIncludeReplaceCommand } from 'ssg-api'
 import { SsiTitleReplaceCommand } from './replacement/SsiTitleReplaceCommand.js'
 import { TitleReplaceCommand } from './replacement/TitleReplaceCommand.js'
 import { VarReplaceCommand } from './replacement/VarReplaceCommand.js'
+import { NavReplaceCommand } from './replacement/NavReplaceCommand.js'
 
-export class NoFrameworkContentStep extends ContentStep {
+export class FirstContentStep extends ContentStep {
 
   constructor (contentRoots, output, searchCommand) {
     super([

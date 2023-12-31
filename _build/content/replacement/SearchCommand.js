@@ -1,5 +1,4 @@
 import { HtmlSsgFile } from 'ssg-api';
-import fs from 'fs';
 
 class PageInfo {
   /**
@@ -12,28 +11,11 @@ class PageInfo {
   url
 }
 
-class WordCount {
-  /**
-   * @type {number}
-   */
-  pageIndex
-  /**
-   *
-   * @type {number}
-   */
-  count
-}
-
 class SearchIndex {
   /**
    * @type {PageInfo[]}
    */
   pages
-  /**
-   *
-   * @type {{[key: string]: WordCount[]}}
-   */
-  words
 }
 
 export class SearchCommandOptions {
@@ -81,33 +63,6 @@ export class SearchCommand {
     return outputFile;
   }
 
-  /**
-   * @protected
-   * @param {Document} doc
-   * @return {string}
-   */
-  getContents(doc) {
-    const div = doc.createElement('div');
-    div.append(doc.body);
-    this.removeTags(div, 'script');
-    this.removeTags(div, 'nav');
-    this.removeTags(div, 'footer');
-    return div.textContent;
-  }
-
   async contentStepEnd() {
-  }
-
-  /**
-   * @protected
-   * @param {HTMLDivElement} div
-   * @param {string} selector
-   */
-  removeTags(div, selector) {
-    const found = div.querySelectorAll(selector);
-    let i = found.length;
-    while (i--) {
-      found[i].parentNode.removeChild(found[i]);
-    }
   }
 }

@@ -1,9 +1,10 @@
 import path from 'path'
 import { CopyStep, DefaultLogger, Ssg, SsgContextImpl } from 'ssg-api'
 import { PackageJsonStep } from './PackageJsonStep.js'
-import { NoFrameworkContentStep } from './content/NoFrameworkContentStep.js'
+import { FirstContentStep } from './content/FirstContentStep.js'
 import { SearchIndexStep } from './SearchIndexStep.js'
 import { SearchCommand } from './content/replacement/SearchCommand.js'
+import { SecondContentStep } from './content/SecondContentStep.js'
 
 const context = new SsgContextImpl('en', new Map(), 'noframework', new DefaultLogger('noframework'))
 const config = {
@@ -36,17 +37,19 @@ const outputFunc = async (context, info, outDir = config.outDir + '/') => {
 const searchCommand = new SearchCommand({
   notIndexedUrls: []
 })
-new Ssg(config)
-  .add(new PackageJsonStep('package.json'))
-  .add(new NoFrameworkContentStep(contentRoots, outputFunc, searchCommand))
-  .add(new CopyStep(['logo.png', 'index.css', 'index.js', 'search.js'], config, { ignore: ['node_modules/**', 'out/**'] }))
-  .add(new SearchIndexStep('out/index.json', searchCommand))
-  .start(context)
-  .then(result => context.log('Completed', result))
-  .catch(err => {
-    try {
-      context.error(err, context.inputFile.name, '=>', context.outputFile?.name)
-    } catch (e) {
-      context.error(err)
-    }
-  })
+try {
+  const result = await new Ssg(config)
+    .add(new PackageJsonStep('package.json'))
+    .add(new FirstContentStep(contentRoots, outputFunc, searchCommand))
+    .add(new CopyStep(['logo.png', 'index.css', 'index.js', 'search.js'], config, { ignore: ['node_modules/**', 'out/**'] }))
+    .add(new SearchIndexStep('out/index.json', searchCommand))
+    .add(new SecondContentStep(contentRoots.map(root => 'out/' + root), outputFunc, searchCommand))
+    .start(context)
+  context.log('Completed', result)
+} catch (err) {
+  try {
+    context.error(err, context.inputFile.name, '=>', context.outputFile?.name)
+  } catch (e) {
+    context.error(err)
+  }
+}

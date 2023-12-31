@@ -3,14 +3,6 @@
   --color: black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --background-color: #11223d;
-    --color: #d2d3e7;
-  }
-}
-
 body, html {
   font-family: system-ui, sans-serif;
   background-color: var(--background-color);
@@ -19,8 +11,9 @@ body, html {
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
-  background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('/logo.png');
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/logo.png');
   background-repeat: no-repeat;
   background-position: top right;
   background-size: 200px;
@@ -34,13 +27,16 @@ a, summary {
   cursor: pointer;
   color: blue;
 }
+
 a:hover, summary:hover {
   text-decoration: underline;
 }
+
 #main-nav ul {
   list-style: none;
   width: 100%;
 }
+
 #main-nav li {
   display: inline-block;
   padding: 0.6em;
@@ -58,10 +54,24 @@ h1 {
   height: 100%;
   max-height: 200px;
 }
+
 .no {
   color: green;
 }
+
 section {
   text-align: left;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --background-color: #11223d;
+    --color: #d2d3e7;
+  }
+
+  body {
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('/logo.png');
+  }
 }
 
