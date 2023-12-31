@@ -35,5 +35,5 @@ const search = document.querySelector("#main-nav .search")
 search.onmouseover = siteSearchLoad
 const searchInput = document.querySelector("#search-site")
 searchInput.disabled = false
-searchInput.setAttribute("placeHolder", "Recherche")
+searchInput.setAttribute("placeHolder", "Search")
 searchInput.oninput = (event) => siteSearchChange(event)
