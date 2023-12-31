@@ -1,5 +1,5 @@
 import path from 'path'
-import { ContentStep, DefaultLogger, Ssg, SsgContextImpl, SsgFile, SsiIncludeReplaceCommand } from 'ssg-api'
+import { ContentStep, CopyStep, DefaultLogger, Ssg, SsgContextImpl, SsgFile, SsiIncludeReplaceCommand } from 'ssg-api'
 
 const context = new SsgContextImpl('en', new Map(), 'noframework', new DefaultLogger('noframework'))
 /**
@@ -77,6 +77,7 @@ class NoFrameworkContentStep extends ContentStep {
 
 new Ssg(config)
   .add(new NoFrameworkContentStep(contentConfigs, outputFunc))
+  .add(new CopyStep(['logo.png', 'index.css'], config, {ignore: ['node_modules/**', 'out/**']}))
   .start(context)
   .then(result => context.log('Completed', result))
   .catch(err => {
