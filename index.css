@@ -37,6 +37,14 @@ a, summary {
 a:hover, summary:hover {
   text-decoration: underline;
 }
+#main-nav ul {
+  list-style: none;
+  width: 100%;
+}
+#main-nav li {
+  display: inline-block;
+  padding: 0.6em;
+}
 
 h1 {
   font-size: 3.5em;
@@ -56,3 +64,4 @@ h1 {
 section {
   text-align: left;
 }
+

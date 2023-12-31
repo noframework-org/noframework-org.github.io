@@ -4,7 +4,8 @@ import { TitleReplaceCommand } from './replacement/TitleReplaceCommand.js'
 import { VarReplaceCommand } from './replacement/VarReplaceCommand.js'
 
 export class NoFrameworkContentStep extends ContentStep {
-  constructor (contentRoots, output) {
+
+  constructor (contentRoots, output, searchCommand) {
     super([
         {
           roots: contentRoots,
@@ -13,6 +14,7 @@ export class NoFrameworkContentStep extends ContentStep {
             new SsiTitleReplaceCommand(),
             new VarReplaceCommand(),
             new TitleReplaceCommand('noframework'),
+            searchCommand,
           ],
           getOutputFile (context) {
             return context.outputFile
