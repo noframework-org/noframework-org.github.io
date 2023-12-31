@@ -1,6 +1,7 @@
 :root {
   --background-color: white;
   --color: black;
+  --link-color: blue;
 }
 
 body, html {
@@ -25,7 +26,7 @@ body {
 a, summary {
   text-decoration: none;
   cursor: pointer;
-  color: blue;
+  color: var(--link-color);
 }
 
 a:hover, summary:hover {
@@ -68,6 +69,7 @@ section {
     color-scheme: dark;
     --background-color: #11223d;
     --color: #d2d3e7;
+    --link-color: lightblue;
   }
 
   body {
