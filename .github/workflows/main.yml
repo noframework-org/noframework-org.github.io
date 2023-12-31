@@ -23,7 +23,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: "20"
+            cache: ${{ steps.detect-package-manager.outputs.manager }}
+            cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
 
       # Runs a single command using the runners shell
       - name: Generate site
