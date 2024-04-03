@@ -1,0 +1,27 @@
+<!--#include virtual="/_build/content/header-start.html" -->
+<title>How build software using Web Components</title>
+<!--#include virtual="/_build/content/header-end.html" -->
+<details>
+  <summary>Code web components</summary>
+  <ol>
+    <li>Create a class which extends a standard HTMLElement.</li>
+    <li>Register it with a tag name using <code>customElements.define(yourTagName, YourComponent)</code>.</li>
+  </ol>
+</details>
+<details>
+  <summary>Style web components</summary>
+  <p>To set the default style of a web component:</p>
+  <ul>
+    <li>define a <code>&lt;style&gt;</code> tag in your component's template.</li>
+    <li>import an external css file using a `?raw` suffix or an import assertion</li>
+  </ul>
+</details>
+<details>
+  <summary>Customize web components style</summary>
+  <p>To customize an existing style of the web component from the light DOM, you can:</p>
+  <ul>
+    <li>use CSS variables (custom properties) that will be read by the component.</li>
+    <li>style some <a href="https://developer.mozilla.org/fr/docs/Web/CSS/::part">::part</a> defined by the component</li>
+  </ul>
+</details>
+<!--#include virtual="/_build/content/footer.html" -->
