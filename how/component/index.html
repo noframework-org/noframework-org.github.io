@@ -13,7 +13,14 @@
   <p>To set the default style of a web component:</p>
   <ul>
     <li>define a <code>&lt;style&gt;</code> tag in your component's template.</li>
-    <li>import an external css file using a `?raw` suffix or an import assertion</li>
+    <li>import an external CSS file as a string, using:
+      <ul>
+        <li><a href="https://web.dev/articles/css-module-scripts?hl=fr">an import assertion</a></li>
+        <li>a webpack <a href="https://webpack.js.org/loaders/css-loader/">CSS loader</a></li>
+        <li><a href="https://vitejs.dev/guide/assets#importing-asset-as-string">a vite `?raw` suffix</a></li>
+        <li>implicitly in svelte</li>
+      </ul>
+    </li>
   </ul>
 </details>
 <details>
