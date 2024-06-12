@@ -13,7 +13,7 @@ export class SsiTitleReplaceCommand extends SsiEchoVarReplaceCommand {
   async createReplacer(context) {
     return {
       replace: () => {
-        return context.inputFile.title
+        return context.file.title
       }
     }
   }

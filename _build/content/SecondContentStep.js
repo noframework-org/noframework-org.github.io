@@ -1,18 +1,16 @@
-import { ContentStep } from 'ssg-api'
-import { NavReplaceCommand } from './replacement/NavReplaceCommand.js'
+import { ContentStep } from "ssg-api"
+import { NavReplaceCommand } from "./replacement/NavReplaceCommand.js"
 
 export class SecondContentStep extends ContentStep {
 
-  constructor (contentRoots, output, searchCommand) {
+  constructor (contentRoots, output, searchCommand, getOutputPath) {
     super([
         {
           roots: contentRoots,
           replacements: [
-            new NavReplaceCommand(searchCommand.index.pages),
+            new NavReplaceCommand(searchCommand.index.pages)
           ],
-          getOutputFile (context) {
-            return context.outputFile
-          }
+          getOutputPath
         }
       ]
       , output)

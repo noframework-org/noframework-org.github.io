@@ -1,4 +1,4 @@
-import { HtmlSsgFile } from 'ssg-api';
+import { HtmlFileContents } from "ssg-api"
 
 class PageInfo {
   /**
@@ -36,33 +36,33 @@ export class SearchCommand {
   index = {
     pages: [],
     words: {}
-  };
+  }
 
   /**
    * @param {SearchCommandOptions} options
    */
-  constructor(options) {
+  constructor (options) {
     this.options = options
   }
 
   /**
-   * @return {Promise<HtmlSsgFile>}
+   * @return {Promise<HtmlFileContents>}
    */
-  async execute(context) {
-    const outputFile = context.outputFile;
-    const title = outputFile.title;
-    const url = outputFile.name;
+  async execute (context) {
+    const outputFile = context.file
+    const title = outputFile.title
+    const url = outputFile.name
     if (title && !this.options.notIndexedUrls.includes(url)) {
-      const indexedPages = this.index.pages;
-      const titleIndexed = indexedPages.find(page => page.title === title && page.url !== url);
+      const indexedPages = this.index.pages
+      const titleIndexed = indexedPages.find(page => page.title === title && page.url !== url)
       if (titleIndexed) {
-        context.warn(`Title "${title}" with URL ${url} is already indexed with URL ${titleIndexed.url}`);
+        context.warn(`Title "${title}" with URL ${url} is already indexed with URL ${titleIndexed.url}`)
       }
-      indexedPages.push({title, url});
+      indexedPages.push({ title, url })
     }
-    return outputFile;
+    return outputFile
   }
 
-  async contentStepEnd() {
+  async contentStepEnd () {
   }
 }

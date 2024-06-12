@@ -11,7 +11,7 @@ export class NavReplaceCommand extends DomReplaceCommand {
   }
 
   async createReplacer (context) {
-    const items = context.inputFile.name.split('/')
+    const items = context.file.name.split('/')
     items.splice(0, 1) // remove "/out"
     return {
       replace: (elem) => {
@@ -19,7 +19,7 @@ export class NavReplaceCommand extends DomReplaceCommand {
           if (!pathElem.endsWith('index.html')) {
             pathElem += '/index.html'
           }
-          const doc = context.outputFile.document
+          const doc = context.file.document
           const li = doc.createElement('li')
           const a = doc.createElement('a')
           li.append(a)

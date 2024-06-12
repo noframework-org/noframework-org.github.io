@@ -20,7 +20,7 @@
     "test": "node --test"
   },
   "devDependencies": {
-    "ssg-api": "^1.6.5"
+    "ssg-api": "^1.10.8"
   },
   "keywords": [
     "framework",

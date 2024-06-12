@@ -6,7 +6,7 @@ import { NavReplaceCommand } from './replacement/NavReplaceCommand.js'
 
 export class FirstContentStep extends ContentStep {
 
-  constructor (contentRoots, output, searchCommand) {
+  constructor (contentRoots, outputFunc, searchCommand, getOutputPath) {
     super([
         {
           roots: contentRoots,
@@ -17,12 +17,10 @@ export class FirstContentStep extends ContentStep {
             new TitleReplaceCommand('noframework'),
             searchCommand,
           ],
-          getOutputFile (context) {
-            return context.outputFile
-          }
+          getOutputPath
         }
       ]
-      , output)
+      , outputFunc)
   }
 
   shouldProcess (_context) {
