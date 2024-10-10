@@ -12,7 +12,7 @@
     "url": "git@github.com:noframework-org/noframework-org.github.io.git"
   },
   "engines": {
-    "node": "18.x"
+    "node": ">= 20"
   },
   "scripts": {
     "rebuild": "rm -Rf out && npm run build",
@@ -20,7 +20,7 @@
     "test": "node --test"
   },
   "devDependencies": {
-    "ssg-api": "^1.10.8"
+    "ssg-api": "^1.16.3"
   },
   "keywords": [
     "framework",
