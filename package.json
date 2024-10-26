@@ -20,7 +20,8 @@
     "test": "node --test"
   },
   "devDependencies": {
-    "ssg-api": "^1.16.4"
+    "@javarome/fileutil": "^0.3.4",
+    "ssg-api": "^1.16.5"
   },
   "keywords": [
     "framework",

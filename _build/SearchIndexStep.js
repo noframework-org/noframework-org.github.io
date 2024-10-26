@@ -1,10 +1,9 @@
-import {FileUtil} from "ssg-api"
+import { writeFile } from "@javarome/fileutil"
 
 /**
  * Saves the index file collected by the SearchCommand.
  */
 export class SearchIndexStep {
-
   /**
    * @param {string} fileName
    * @param {SearchCommand} searchCommand
@@ -17,7 +16,7 @@ export class SearchIndexStep {
 
   async execute(context) {
     context.log("Saving index at", this.fileName)
-    await FileUtil.writeFile(this.fileName, JSON.stringify(this.searchCommand.index), "utf-8")
+    await writeFile(this.fileName, JSON.stringify(this.searchCommand.index), "utf-8")
     return this.searchCommand.index.pages.length
   }
 }

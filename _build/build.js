@@ -10,22 +10,15 @@ const context = new SsgContextImpl("en", new Map(), "noframework", new ConsoleLo
 const outDir = "out"
 const config = { outDir }
 const getOutputPath = (context) => path.join(outDir, context.file.name)
-/**
- * @type {string[]}
- */
-const contentRoots = [
-  "index.html",
-  "how/**/*.html",
-  "read/**/*.html"
-]
-const outputFunc = async (context, info, outDir = config.outDir + "/") => {
+const contentRoots = ["index.html", "how/**/*.html", "read/**/*.html"]
+const outputFunc = async (context, info, outDir = path.join(config.outDir, "/")) => {
   // TODO: Fix this
   if (info.name.startsWith(outDir)) {
     if (info.name.startsWith(path.join(outDir, outDir))) {
       info.name = info.name.substring(outDir.length)
     }
   } else {
-    info.name = outDir + info.name
+    info.name = path.join(outDir, info.name)
   }
   try {
     context.log("Writing", info.name)
@@ -48,7 +41,7 @@ try {
       options: { ignore: ["node_modules/**", "out/**"] }
     }))
     .add(new SearchIndexStep("out/index.json", searchCommand))
-    .add(new SecondContentStep(contentRoots.map(root => "out/" + root), outputFunc, searchCommand, getOutputPath))
+    .add(new SecondContentStep(contentRoots.map(root => path.join("out", root)), outputFunc, searchCommand, getOutputPath))
     .start(context)
   context.log("Completed", result)
 } catch (err) {

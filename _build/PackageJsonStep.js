@@ -1,4 +1,4 @@
-import { FileContents } from "ssg-api"
+import { FileContents } from "@javarome/fileutil"
 
 export class PackageJsonStep {
   constructor (fileName) {
